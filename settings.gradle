@@ -1,0 +1,1 @@
+include ':app', ':heresdk-lite-android-4.1.5.0.951'
