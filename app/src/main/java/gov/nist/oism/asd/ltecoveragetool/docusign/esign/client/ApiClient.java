@@ -18,10 +18,13 @@ import java.lang.reflect.Type;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import gov.nist.oism.asd.ltecoveragetool.SampleApp;
 import gov.nist.oism.asd.ltecoveragetool.docusign.esign.client.auth.ApiKeyAuth;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.RequestBody;
+import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
@@ -87,13 +90,22 @@ public class ApiClient {
 
         okBuilder = new OkHttpClient.Builder();
 
+        okBuilder.addInterceptor(chain -> {
+            Request original = chain.request();
+
+            Request request = original.newBuilder()
+                    .header("Authorization", "Bearer " + SampleApp.getInstance().getAccessToken())
+                    .build();
+
+            return chain.proceed(request);
+        });
+
         if (!baseUrl.endsWith("/"))
             baseUrl = baseUrl + "/";
 
         adapterBuilder = new Retrofit
                 .Builder()
                 .baseUrl(baseUrl)
-
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonCustomConverterFactory.create(gson));
     }

@@ -22,8 +22,12 @@ public class MapMode {
         }
     }
 
+    public static File getExternalDataFile(Context context, String fileName, String extension) {
+        return new File(context.getExternalFilesDir(null), fileName + "." + extension);
+    }
+
     public static File getExternalDataFile(Context context, String fileName) {
-        return new File(context.getExternalFilesDir(null), fileName + ".csv");
+        return getExternalDataFile(null, fileName, "csv");
     }
 
 }
