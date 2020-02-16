@@ -54,7 +54,7 @@ public class FloorPlanActivity extends RecordActivity implements
     private static final String CIRCLE_SOURCE_ID = "circle-source-id";
     private static final String ID_IMAGE_LAYER = "layer-id";
     private static int PHOTO_PICK_CODE = 4;
-    private MapView mapView;
+//    private MapView mapView;
     private LatLngQuad quad;
     private List<Feature> boundsFeatureList;
     private List<Point> boundsCirclePointList;
@@ -69,9 +69,9 @@ public class FloorPlanActivity extends RecordActivity implements
 
         super.onCreate(savedInstanceState);
 
-        mapView = findViewById(R.id.mapView);
-        mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(this);
+//        mapView = findViewById(R.id.mapView);
+//        mapView.onCreate(savedInstanceState);
+//        mapView.getMapAsync(this);
     }
 
     @Override
@@ -232,31 +232,31 @@ public class FloorPlanActivity extends RecordActivity implements
     @Override
     public void onResume() {
         super.onResume();
-        mapView.onResume();
+//        mapView.onResume();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        mapView.onStart();
+//        mapView.onStart();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mapView.onStop();
+//        mapView.onStop();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        mapView.onPause();
+//        mapView.onPause();
     }
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        mapView.onLowMemory();
+//        mapView.onLowMemory();
     }
 
     @Override
@@ -265,13 +265,13 @@ public class FloorPlanActivity extends RecordActivity implements
         if (mapboxMap != null) {
             mapboxMap.removeOnMapClickListener(this);
         }
-        mapView.onDestroy();
+//        mapView.onDestroy();
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        mapView.onSaveInstanceState(outState);
+//        mapView.onSaveInstanceState(outState);
     }
 
 

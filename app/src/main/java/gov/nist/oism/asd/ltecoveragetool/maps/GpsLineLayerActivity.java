@@ -6,10 +6,18 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.here.sdk.core.GeoCoordinates;
 import com.here.sdk.mapviewlite.MapPolyline;
+import com.here.sdk.mapviewlite.MapScene;
+import com.here.sdk.mapviewlite.MapStyle;
+import com.here.sdk.mapviewlite.MapViewLite;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.FeatureCollection;
@@ -39,6 +47,8 @@ import gov.nist.oism.asd.ltecoveragetool.util.LteLog;
  * Used for both modes 1 and 2.
  */
 public class GpsLineLayerActivity extends RecordActivity  implements OnMapReadyCallback, LocationListener {
+    private FusedLocationProviderClient fusedLocationClient;
+    private MapViewLite mapView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,14 +61,42 @@ public class GpsLineLayerActivity extends RecordActivity  implements OnMapReadyC
 
         super.onCreate(savedInstanceState);
 
-
-
-        // This contains the MapView in XML and needs to be called after the access token is configured.
-        mapView = findViewById(R.id.mapView);
+        // Get a MapViewLite instance from the layout.
+        mapView = findViewById(R.id.map_view);
         mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(this);
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            // Logic to handle location object
+                            lastLat = location.getLatitude();
+                            lastLng = location.getLongitude();
+                            mapView.getCamera().setTarget(new GeoCoordinates(lastLat, lastLng));
+                        }
+                    }
+                });
+        // This contains the MapView in XML and needs to be called after the access token is configured.
+//        mapView = findViewById(R.id.mapView);
+//        mapView.onCreate(savedInstanceState);
+//        mapView.getMapAsync(this);
     }
 
+    private void loadMapScene() {
+        // Load a scene from the SDK to render the map with a map style.
+        mapView.getMapScene().loadScene(MapStyle.NORMAL_DAY, new MapScene.LoadSceneCallback() {
+            @Override
+            public void onLoadScene(@Nullable MapScene.ErrorCode errorCode) {
+                if (errorCode == null) {
+                    mapView.getCamera().setZoomLevel(14);
+                } else {
+                    Log.d(getClass().getSimpleName(), "onLoadScene failed: " + errorCode.toString());
+                }
+            }
+        });
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -69,18 +107,19 @@ public class GpsLineLayerActivity extends RecordActivity  implements OnMapReadyC
     public void onResume() {
         super.onResume();
         mapView.onResume();
+        loadMapScene();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        mapView.onStart();
+//        mapView.onStart();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mapView.onStop();
+//        mapView.onStop();
     }
 
     @Override
@@ -92,7 +131,7 @@ public class GpsLineLayerActivity extends RecordActivity  implements OnMapReadyC
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        mapView.onLowMemory();
+//        mapView.onLowMemory();
     }
 
     @Override
@@ -104,7 +143,7 @@ public class GpsLineLayerActivity extends RecordActivity  implements OnMapReadyC
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        mapView.onSaveInstanceState(outState);
+//        mapView.onSaveInstanceState(outState);
     }
 
 
@@ -113,8 +152,8 @@ public class GpsLineLayerActivity extends RecordActivity  implements OnMapReadyC
         lastLat = location.getLatitude();
         lastLng = location.getLongitude();
         LteLog.d("loc", String.format(Locale.US, "%f, %f", lastLat, lastLng));
+        mapView.getCamera().setTarget(new GeoCoordinates(lastLat, lastLng));
         //this.mapboxMap.getLocationComponent().forceLocationUpdate(location);
-
     }
 
     @Override
