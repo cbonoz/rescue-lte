@@ -19,10 +19,11 @@ package gov.nist.oism.asd.ltecoveragetool;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
@@ -37,6 +38,9 @@ import java.net.URLConnection;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import gov.nist.oism.asd.ltecoveragetool.docusign.SignOrSendActivity;
+
+import static gov.nist.oism.asd.ltecoveragetool.Constants.EXTRA_DOWNLOAD_URL;
 import static gov.nist.oism.asd.ltecoveragetool.maps.MapMode.getExternalDataFile;
 
 
@@ -91,6 +95,13 @@ public class GradeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_grade, container, false);
         TextView filenameText = view.findViewById(R.id.fragment_grade_filename_text_ui);
         filenameText.setText(mFilename);
+
+        Button signButton = view.findViewById(R.id.sign_and_send_button);
+        signButton.setOnClickListener(view12 -> {
+            Intent intent = new Intent(getActivity(), SignOrSendActivity.class);
+            intent.putExtra(EXTRA_DOWNLOAD_URL, mFilename);
+            startActivity(intent);
+        });
 
         filenameText.setOnClickListener(view1 -> shareFile(getExternalDataFile(getContext(), mFilename)));
 

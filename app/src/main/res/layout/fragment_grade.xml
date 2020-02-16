@@ -38,10 +38,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="84dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="24dp"
             android:text="@string/fragment_grade_grade_label_text"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sign_and_send_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign and send" />
+
         <TextView
             android:id="@+id/fragment_grade_grade_text_ui"
             android:layout_width="wrap_content"
@@ -56,6 +64,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp" />
+
     </LinearLayout>
 </FrameLayout>

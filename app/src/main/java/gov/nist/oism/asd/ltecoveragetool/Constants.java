@@ -2,7 +2,13 @@ package gov.nist.oism.asd.ltecoveragetool;
 
 public class Constants {
 
+    public static final String EXTRA_DOWNLOAD_URL = "extra_download_url";
+    public static final String UPLOAD_COMPLETED = "upload_completed";
+
     public static final String APP_ID = "5HjbnlLIIiUx3hp4yNXY";
     public static final String APP_KEY = "EEdN40XjNtvzVu_x7Dl0Gg";
     public static final String APP_SECRET = "6zx9F01BNweXtrN84rMzMu4YXwiHFKq7_SuxunvfuKkTelw6P-MaO4NGIY3-7wHiq3J1OGIYOWfGGP2HqovxYA";
+
+    public static final String DOCUSIGN_ACCESS_TOKEN = "eyJ0eXAiOiJNVCIsImFsZyI6IlJTMjU2Iiwia2lkIjoiNjgxODVmZjEtNGU1MS00Y2U5LWFmMWMtNjg5ODEyMjAzMzE3In0.AQoAAAABAAUABwAAapJUlLLXSAgAAKq1Ytey10gCAFBCta2KytlNjoeJLZKp42gVAAEAAAAYAAEAAAAFAAAADQAkAAAAZjBmMjdmMGUtODU3ZC00YTcxLWE0ZGEtMzJjZWNhZTNhOTc4IgAkAAAAZjBmMjdmMGUtODU3ZC00YTcxLWE0ZGEtMzJjZWNhZTNhOTc4MACAM9QtlLLXSDcAe4G-b6hyNUSV2Sc1dfQtGQ.1iiIQZAj2a90-6fCoCfU8r4nX4hOwHYT-UUfXPtv5k62znoeIJa79DUEfOgTnPzwWKtsxOLOwXOU9kPKDgyj0qWGOvqPutcBA5kFjjJXGdFuRrSTdcjP-BWKTDx4QHzfD6mo5TS52QyYZHmgHSTPPo4RdLWfWf21glgT6JghtA0Frgo5Mf18dgmdp_SzpQGrlGQ8lpgU_DK4QecVzR0-Ltk3j6r1gzodrlnCLwBm7IqX7_sdxf5HjWwuPrWVElr_DyChrjAoCaVDO30ijr6Yq-i6pQTeW837vBI-lcMe300OppKc1qEbKsRvbMtFdLXkSB5ONQNLtqIVKgK-YV9TBA";
+
 }

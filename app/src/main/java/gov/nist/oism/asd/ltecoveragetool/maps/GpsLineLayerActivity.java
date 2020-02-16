@@ -5,16 +5,14 @@ import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.here.sdk.core.GeoCoordinates;
-import com.here.sdk.mapviewlite.MapPolyline;
 import com.here.sdk.mapviewlite.MapScene;
 import com.here.sdk.mapviewlite.MapStyle;
 import com.here.sdk.mapviewlite.MapViewLite;
@@ -53,7 +51,7 @@ public class GpsLineLayerActivity extends RecordActivity  implements OnMapReadyC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // These items should be set up before the parent onCreate is called.
-        Mapbox.getInstance(this, getString(R.string.testing_token));
+//        Mapbox.getInstance(getApplicationContext(), getString(R.string.testing_token));
         setContentView(R.layout.activity_record_mapping);
         findViewById(R.id.floor_button_layout).setVisibility(View.GONE); // hide floor buttons.
         mapMode = getIntent().getStringExtra(NewRecordingActivity.MAP_MODE_KEY);
@@ -66,16 +64,13 @@ public class GpsLineLayerActivity extends RecordActivity  implements OnMapReadyC
         mapView.onCreate(savedInstanceState);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        // Got last known location. In some rare situations this can be null.
-                        if (location != null) {
-                            // Logic to handle location object
-                            lastLat = location.getLatitude();
-                            lastLng = location.getLongitude();
-                            mapView.getCamera().setTarget(new GeoCoordinates(lastLat, lastLng));
-                        }
+                .addOnSuccessListener(this, location -> {
+                    // Got last known location. In some rare situations this can be null.
+                    if (location != null) {
+                        // Logic to handle location object
+                        lastLat = location.getLatitude();
+                        lastLng = location.getLongitude();
+                        mapView.getCamera().setTarget(new GeoCoordinates(lastLat, lastLng));
                     }
                 });
         // This contains the MapView in XML and needs to be called after the access token is configured.

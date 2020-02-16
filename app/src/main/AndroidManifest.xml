@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="gov.nist.oism.asd.ltecoveragetool"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="gov.nist.oism.asd.ltecoveragetool">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -10,21 +11,23 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
+    <!--        tools:replace="android:appComponentFactory"-->
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher_indoor_lte"
         android:label="@string/app_name"
+        android:name="SampleApp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <meta-data android:name="com.here.sdk.access_key_id" android:value="EEdN40XjNtvzVu_x7Dl0Gg" />
         <meta-data android:name="com.here.sdk.access_key_secret" android:value="6zx9F01BNweXtrN84rMzMu4YXwiHFKq7_SuxunvfuKkTelw6P-MaO4NGIY3-7wHiq3J1OGIYOWfGGP2HqovxYA" />
         <activity
-            android:name=".DisclaimerActivity"
+            android:name=".NewRecordingActivity"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
@@ -33,7 +36,7 @@
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".DisclaimerActivity"/>
+                android:value=".DisclaimerActivity" />
         </activity>
         <activity
             android:name=".AcknowledgementNoticeActivity"
@@ -41,23 +44,18 @@
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".DisclaimerActivity"/>
-        </activity>
-        <activity
-            android:name=".NewRecordingActivity"
-            android:screenOrientation="portrait">
+                android:value=".DisclaimerActivity" />
         </activity>
         <activity
             android:name=".RecordActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".DisplayResultsActivity"
             android:parentActivityName=".RecordActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".RecordActivity"/>
+                android:value=".RecordActivity" />
         </activity>
         <activity
             android:name=".NistSoftwareActivity"
@@ -65,7 +63,7 @@
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".DisclaimerActivity"/>
+                android:value=".DisclaimerActivity" />
         </activity>
         <activity
             android:name=".LiabilityNoticeActivity"
@@ -73,7 +71,7 @@
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".DisclaimerActivity"/>
+                android:value=".DisclaimerActivity" />
         </activity>
         <activity
             android:name=".UncertaintyNoticeActivity"
@@ -81,10 +79,12 @@
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".DisclaimerActivity"/>
+                android:value=".DisclaimerActivity" />
         </activity>
         <activity android:name=".maps.GpsLineLayerActivity" />
         <activity android:name=".maps.FloorPlanActivity" />
+        <activity android:name=".docusign.SignOrSendActivity" />
+        <activity android:name=".docusign.EmbeddedSigningActivity" />
     </application>
 
 </manifest>

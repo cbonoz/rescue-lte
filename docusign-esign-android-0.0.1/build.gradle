@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('docusign-esign-android-0.0.1.jar'))
