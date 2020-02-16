@@ -193,7 +193,7 @@ public class SignOrSendActivity extends AppCompatActivity implements View.OnClic
             }
 
             callHelper(file);
-        } catch (Exception e) {
+        } catch (Exception e){
             e.printStackTrace();
             showError("Error reading the provided file");
         }

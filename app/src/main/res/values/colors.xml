@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#071A29</color>
+    <color name="colorPrimary">#475A89</color>
     <color name="colorPrimaryDark">#111111</color>
     <color name="colorAccent">#00ff00</color>
-    <color name="colorActivityBackground">#172A39</color>
+    <color name="colorActivityBackground">#99AAAA</color>
     <color name="button_pause_resume_recording">#d76100</color>
 
     <!-- Grade Fragment. -->
