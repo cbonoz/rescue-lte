@@ -20,6 +20,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.regex.Pattern;
 
 
@@ -174,19 +178,19 @@ public class SignOrSendActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onStoragePermissionGranted() {
         try {
-            final File file = getExternalDataFile(this, fileName);
-//            InputStream inputStream = getAssets().open(file.getPath());
-//            OutputStream outputStream = new FileOutputStream(file);
-//            try {
-//                byte buffer[] = new byte[1024];
-//                int length;
-//                while ((length = inputStream.read(buffer)) > 0) {
-//                    outputStream.write(buffer, 0, length);
-//                }
-//            } finally {
-//                outputStream.close();
-//                inputStream.close();
-//            }
+            final File file = getExternalDataFile(this, fileName, "pdf");
+            InputStream inputStream = getApplicationContext().getAssets().open("data.pdf");
+            OutputStream outputStream = new FileOutputStream(file);
+            try {
+                byte buffer[] = new byte[1024];
+                int length;
+                while ((length = inputStream.read(buffer)) > 0) {
+                    outputStream.write(buffer, 0, length);
+                }
+            } finally {
+                outputStream.close();
+                inputStream.close();
+            }
 
             callHelper(file);
         } catch (Exception e) {
@@ -420,7 +424,7 @@ public class SignOrSendActivity extends AppCompatActivity implements View.OnClic
             EnvelopeSummary envelopeSummary;
             try {
                 envelopeSummary = SampleApp.getInstance().envelopesHelper.requestSignatureFromDocument
-                        (mAccountId, mFile, "Please DocuSign this document", mRecipientEmail);
+                        (mAccountId, mFile, "RescueLTE - Your coverage report is ready, please DocuSign this document", mRecipientEmail);
             } catch (Exception e) {
                 envelopeSummary = null;
                 Log.w(TAG, "Error in sending envelope: " + e.getMessage());

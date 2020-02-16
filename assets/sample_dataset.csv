@@ -1,3 +1,5 @@
+Please sign and auth
+
 Time,RSRP,RSRQ,PCI,OFFSET=0.0,latitude,longitude,elevation,accuracy,Dataset notes,,,,,,,,,,,
 12:21:31,-88,-10,N/A,,40.019463,-105.256445,5155,13.832258,Start NEC of route,http://www.gpsvisualizer.com/map_input?form=google&trk_colorize=custom&trk_colorize_custom=RSRP&units=us&add_elevation=auto,,,,,,,,,,
 12:21:32,-88,-10,N/A,,40.019463,-105.256445,5155,13.832258,Move south,,,,,,,,,,,
@@ -561,4 +563,3 @@ Time,RSRP,RSRQ,PCI,OFFSET=0.0,latitude,longitude,elevation,accuracy,Dataset note
 12:30:50,-107,-18,N/A,,40.019474,-105.256694,5155,10.374194,,,,,,,,,,,,
 12:30:51,-107,-18,N/A,,40.019474,-105.256694,5155,10.374194,,,,,,,,,,,,
 12:30:52,-107,-18,N/A,,40.019478,-105.25669,5155,10.374194,,,,,,,,,,,,
-12:30:53,-104,-12,N/A,,40.019478,-105.25669,5155,10.374194,,,,,,,,,,,,

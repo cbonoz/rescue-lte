@@ -27,7 +27,7 @@ public class MapMode {
     }
 
     public static File getExternalDataFile(Context context, String fileName) {
-        return getExternalDataFile(null, fileName, "csv");
+        return getExternalDataFile(context, fileName, "csv");
     }
 
 }
